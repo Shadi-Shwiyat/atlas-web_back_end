@@ -11,5 +11,5 @@ def to_kv(k: str, v: Union[int, float]) -> Tuple[str, float]:
     in the tuple'''
     new_tuple = tuple()
     vSquared = v * v
-    new_tuple = [k, vSquared]
+    new_tuple = (k, vSquared)
     return new_tuple
