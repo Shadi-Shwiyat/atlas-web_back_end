@@ -4,9 +4,8 @@
 '''
 
 
-def add(a: float, b: float):
+def add(a: float, b: float) -> float:
     '''Use type annotation to hint sum
         should be float
     '''
-    sum: float = a + b
-    return (sum)
+    return (a + b)
