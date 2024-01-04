@@ -10,5 +10,6 @@ def to_kv(k: str, v: Union[int, float]) -> Tuple[str, float]:
     and the second element is v squared. v should be a float
     in the tuple'''
     new_tuple = tuple()
-    new_tuple = [k, (v*v)]
+    vSquared = v * v
+    new_tuple = [k, vSquared]
     return new_tuple

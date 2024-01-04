@@ -184,3 +184,5 @@ bob@dylan:~$ ./7-main.py
 ('eggs', 9)
 ('school', 0.0004)
 ```
+
+### <a name="task8"></a>8. Complex types - functions
