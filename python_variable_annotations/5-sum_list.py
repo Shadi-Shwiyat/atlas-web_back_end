@@ -5,7 +5,7 @@
 '''
 
 
-def sum_list(input_list: list) -> float:
+def sum_list(input_list: float) -> float:
     '''input_list is a list of floats,
     calculate their sum and return a float(total)'''
     total = sum(input_list)
