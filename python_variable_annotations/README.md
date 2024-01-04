@@ -144,3 +144,5 @@ True
 {'input_list': typing.List[float], 'return': <class 'float'>}
 sum_list(floats) returns 6.470000000000001 which is a <class 'float'>
 ```
+
+### <a name="task5"></a>5. Complex types - mixed list
