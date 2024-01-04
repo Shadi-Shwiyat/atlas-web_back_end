@@ -3,7 +3,7 @@ This repo hold projects that are designed to help me learn concepts related to b
 
 # Projects in this Repository
 
-## Python - Variable Annotations
+## 0. Python - Variable Annotations
 The goal of this project is to get familiar with typing annotations in python
 ### Learning Objectives
 - Type annotations in Python 3
@@ -11,7 +11,7 @@ The goal of this project is to get familiar with typing annotations in python
 - Duck typing
 - How to validate your code with mypy
 
-## Python - Async
+## 1. Python - Async
 This project helps students learn how to utilize the power of async funtions in python
 ### Learning Objectives
 - async and await syntax
