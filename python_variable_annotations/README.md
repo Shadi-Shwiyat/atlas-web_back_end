@@ -1,5 +1,5 @@
 # Python - Variable Annotations
-The goal of this project is to get familiar with typings in python
+The goal of this project is to get familiar with typings in python and learn basic annotations
 
 ## Learning Objectives
 - Type annotations in Python 3
@@ -9,15 +9,15 @@ The goal of this project is to get familiar with typings in python
 
 ## Tasks
 0. [Basic annotations - add](#task0)
-1. [Basic annotations - add](#task1)
-2. [Basic annotations - add](#task2)
-3. [Basic annotations - add](#task3)
-4. [Basic annotations - add](#task4)
-5. [Basic annotations - add](#task5)
-6. [Basic annotations - add](#task6)
-7. [Basic annotations - add](#task7)
-8. [Basic annotations - add](#task8)
-9. [Basic annotations - add](#task9)
+1. [Basic annotations - concat](#task1)
+2. [2. Basic annotations - floor](#task2)
+3. [Basic annotations - to string](#task3)
+4. [Define variables](#task4)
+5. [Complex types - list of floats](#task5)
+6. [Complex types - mixed list](#task6)
+7. [Complex types - string and int/float to tuple](#task7)
+8. [Complex types - functions](#task8)
+9. [Let's duck type an iterable object](#task9)
 
 ### <a name="task0"></a>0. Basic annotations - add
 Write a type-annotated function add that takes a float a and a float b as arguments and returns their sum as a float.
