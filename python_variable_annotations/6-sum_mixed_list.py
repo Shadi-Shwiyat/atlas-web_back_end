@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''Function takes a mixed list
-    of ints and floats and 
+    of ints and floats and
     returns their sum as a float'''
 from typing import *
 
