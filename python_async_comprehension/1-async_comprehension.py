@@ -10,7 +10,4 @@ async def async_comprehension() -> List[float]:
     '''coroutine that collects 10 random
     floats using async comprehensing over
     async_generator, then return the list of 10 floats'''
-    results = []
-    async for result in async_generator():
-        results.append(result)
-    return results
+    return [i async for i in async_generator()]
