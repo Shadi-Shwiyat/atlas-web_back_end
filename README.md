@@ -19,3 +19,10 @@ This project helps students learn how to utilize the power of async funtions in 
 - How to run concurrent coroutines
 - How to create asyncio tasks
 - How to use the random module
+
+## 2. Python - Async Comprehension
+The goal for this project is to learn how to write an asynchronous generator and use async comprehensions
+### Learning Objectives
+- How to write an asynchronous generator
+- How to use async comprehensions
+- How to type-annotate generators
