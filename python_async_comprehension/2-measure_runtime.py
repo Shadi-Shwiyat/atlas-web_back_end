@@ -1,4 +1,4 @@
-#!/usr/bin/bash python3
+#!/usr/bin/env python3
 '''Script runs async_comprehension function
     four times in parallel'''
 import asyncio
