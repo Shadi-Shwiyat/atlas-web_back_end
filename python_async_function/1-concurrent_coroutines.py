@@ -14,9 +14,15 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
     and this function will return a list of floats
     that were returned by the wait_random function'''
     float_list = []
-    calls: int = 0
-    while calls < n:
-        delay_result = await wait_random(max_delay)
-        float_list.append(delay_result)
-        calls += 1
+
+    async def wait_and_append():
+        result = await wait_random(max_delay)
+        float_list.append(result)
+
+    # Create tasks and add them to the event loop
+    tasks = [asyncio.create_task(wait_and_append()) for _ in range(n)]
+
+    # Use asyncio.gather to wait for all tasks to complete
+    await asyncio.gather(*tasks)
+
     return float_list
