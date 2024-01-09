@@ -21,7 +21,8 @@ class FIFOCache(BaseCaching):
             None, method does nothing'''
         if key is None or item is None:
             return None
-        elif len(self.cache_data) is BaseCaching.MAX_ITEMS and key not in self.cache_data:
+        elif (len(self.cache_data) is BaseCaching.MAX_ITEMS
+              and key not in self.cache_data):
             # print(len(self.cache_data))
             # Use list method to get the first key/value pair
             # by insertion order
