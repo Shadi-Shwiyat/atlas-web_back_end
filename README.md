@@ -26,3 +26,15 @@ The goal for this project is to learn how to write an asynchronous generator and
 - How to write an asynchronous generator
 - How to use async comprehensions
 - How to type-annotate generators
+
+## 3. Caching
+This project aims to display an understanding what a caching system is, and how various cache replacement policies are used to maintain a caching system
+### Learning Objectives
+- What a caching system is
+- What FIFO means
+- What LIFO means
+- What LRU means
+- What MRU means
+- What LFU means
+- What the purpose of a caching system
+- What limits a caching system have
