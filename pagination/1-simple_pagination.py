@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-''''''
+'''Module builds a class that
+    uses a data.csv file and
+    paginates the data from that
+    file'''
 import csv
 import math
 from typing import List
