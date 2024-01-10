@@ -63,5 +63,6 @@ class LRUCache(BaseCaching):
         if key not in self.cache_data:
             return None
         else:
+            self.lru_maintainer(key)
             value = self.cache_data[key]
             return value
