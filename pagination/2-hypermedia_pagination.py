@@ -44,7 +44,7 @@ class Server:
         # print(dataset_length)
 
         for index in range(page_indexes[0], page_indexes[1]):
-            if index > dataset_length:
+            if index >= dataset_length:
                 return result_list
             else:
                 result_list.append(dataset[index])
@@ -56,6 +56,7 @@ class Server:
             pages, total amount of pages, and the dataset
             of the current page.'''
         current_page_data = self.get_page(page, page_size)
+        # print(current_page_data)
 
         dataset = self.dataset()
         total_pages = math.ceil((len(dataset) / page_size))
