@@ -14,24 +14,26 @@ class LIFOCache(BaseCaching):
         '''Call init method of parent class for access to
             cache_data dictionary'''
         super().__init__()
+        self.last_inserted_key = None
 
     def put(self, key, item):
         '''assigns to cache_data dictionary item value
             for each corresponding key, if key or item is
-            None, method does nothing'''
+            None, method does nothing, track the last item
+            that was added to dictionary using variable'''
         if key is None or item is None:
             return None
-        elif len(self.cache_data) is BaseCaching.MAX_ITEMS:
-            # print(len(self.cache_data))
-            # Use list method to get the last key/value pair
-            # by insertion order
-            last_key, last_value = list(self.cache_data.items())[BaseCaching.MAX_ITEMS - 1]
-            print(list(self.cache_data.items())[BaseCaching.MAX_ITEMS - 1])
-            del self.cache_data[last_key]
+        elif (len(self.cache_data) is BaseCaching.MAX_ITEMS
+              and key not in self.cache_data):
+            # Use variable to get last inserted value
+            # and delete it
+            print(f'DISCARD:', self.last_inserted_key)
             self.cache_data[key] = item
-            print(f'DISCARD:', last_key)
+            del(self.cache_data[self.last_inserted_key])
+            self.last_inserted_key = key
         else:
             self.cache_data[key] = item
+            self.last_inserted_key = key
 
     def get(self, key):
         '''returns value in cache_data dictionary linked
