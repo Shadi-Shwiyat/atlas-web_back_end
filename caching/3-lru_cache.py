@@ -52,6 +52,11 @@ class LRUCache(BaseCaching):
             self.most_recent.remove(self.most_recent[0])
             self.most_recent.append(key)
             # print(self.most_recent)
+        elif (key in self.most_recent):
+            # print(self.most_recent)
+            self.most_recent.remove(key)
+            self.most_recent.append(key)
+            # print(self.most_recent)
         else:
             # print(self.most_recent)
             self.most_recent.append(key)
