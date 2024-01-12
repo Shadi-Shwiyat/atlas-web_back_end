@@ -39,9 +39,17 @@ This project aims to display an understanding what a caching system is, and how 
 - What the purpose of a caching system
 - What limits a caching system have
 
-## 3. Pagination
+## 4. Pagination
 The goal for this project is to learn how to paginate data to make the users experience of working with data better
 ### Learning Objectives
 - How to paginate a dataset with simple page and page_size parameters
 - How to paginate a dataset with hypermedia metadata
 - How to paginate in a deletion-resilient manner
+
+## 5. Personal data
+This project teaches the importance of authentication and personal data, and how to implement methods to protect them
+### Learning Objectives
+- Examples of Personally Identifiable Information (PII)
+- How to implement a log filter that will obfuscate PII fields
+- How to encrypt a password and check the validity of an input password
+- How to authenticate to a database using environment variables
