@@ -1,24 +1,13 @@
 #!/usr/bin/env python3
-'''Script is a function that
-    returns an obfuscated
-    log statement'''
+'''Script holds various
+    functions related to
+    filtering and logging
+    pii and pd'''
 from typing import List
 import re
 import logging
 
-
-def filter_datum(fields: List[str], redaction: str,
-                 message: str, separator: str) -> str:
-    '''Function returns a string as
-        a representation of log data, in
-        which certian fields(which are
-        passed in) are obfuscated with
-        the redaction(also passed in)'''
-    for field in fields:
-        pattern = re.compile(rf'({field}=).*?{separator}')
-        replacement = rf'\1{redaction}{separator}'
-        message = re.sub(pattern, replacement, message)
-    return(message)
+PII_FIELDS = ('name', 'email', 'phone', 'ssn', 'ip')
 
 
 class RedactingFormatter(logging.Formatter):
@@ -42,3 +31,36 @@ class RedactingFormatter(logging.Formatter):
         result = filter_datum(self.fields, self.REDACTION,
                               log_message, self.SEPARATOR)
         return(result)
+
+
+def filter_datum(fields: List[str], redaction: str,
+                 message: str, separator: str) -> str:
+    '''Function returns a string as
+        a representation of log data, in
+        which certian fields(which are
+        passed in) are obfuscated with
+        the redaction(also passed in)'''
+    for field in fields:
+        pattern = re.compile(rf'({field}=).*?{separator}')
+        replacement = rf'\1{redaction}{separator}'
+        message = re.sub(pattern, replacement, message)
+    return(message)
+
+
+def get_logger() -> logging.Logger:
+    '''Function returns a
+        logging.logger object named
+        user_data and only logs up to
+        logging.INFO level'''
+    user_data = logging.Logger
+    user_data.setLevel(logging.INFO)
+
+    stream_handler = logging.StreamHandler()
+    stream_handler.setLevel(logging.INFO)
+
+    formatter = RedactingFormatter()
+    stream_handler.setFormatter(formatter)
+
+    user_data.addHandler(stream_handler)
+
+    return user_data
