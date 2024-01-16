@@ -1,4 +1,4 @@
-# Pagination
+# Personal Data
 This project teaches the importance of personal data, and how to implement methods to protect user data
 
 ## Learning Objectives
