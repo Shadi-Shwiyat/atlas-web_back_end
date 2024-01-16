@@ -47,9 +47,18 @@ The goal for this project is to learn how to paginate data to make the users exp
 - How to paginate in a deletion-resilient manner
 
 ## 5. Personal data
-This project teaches the importance of authentication and personal data, and how to implement methods to protect them
+This project teaches the importance of personal data, and how to implement methods to protect user data
 ### Learning Objectives
 - Examples of Personally Identifiable Information (PII)
 - How to implement a log filter that will obfuscate PII fields
 - How to encrypt a password and check the validity of an input password
 - How to authenticate to a database using environment variables
+
+## 6. Basic authentication
+In this project we learn authentication methods to provide security in the applications we build
+### Learning Objectives
+- What authentication means
+- What Base64 is
+- How to encode a string in Base64
+- What Basic authentication means
+- How to send the Authorization header

@@ -1,10 +1,11 @@
 # Pagination
-The goal for this project is to learn how to paginate data to make the users experience of working with data better
+This project teaches the importance of personal data, and how to implement methods to protect user data
 
 ## Learning Objectives
-- How to paginate a dataset with simple page and page_size parameters
-- How to paginate a dataset with hypermedia metadata
-- How to paginate in a deletion-resilient manner
+- Examples of Personally Identifiable Information (PII)
+- How to implement a log filter that will obfuscate PII fields
+- How to encrypt a password and check the validity of an input password
+- How to authenticate to a database using environment variables
 
 ## Tasks
 0. [Regex-ing](#task0)
