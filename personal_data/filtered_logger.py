@@ -9,7 +9,7 @@ import logging
 import os
 import mysql.connector
 
-PII_FIELDS = ('phone', 'password', 'email', 'ssn', 'name')
+PII_FIELDS = ('name', 'email', 'phone', 'ssn', 'password')
 
 
 class RedactingFormatter(logging.Formatter):
@@ -88,3 +88,33 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
     )
 
     return db
+
+
+def main():
+    '''Function obtains a database connection
+        using get_db func, then retrieves all
+        rows in users table and display each
+        row in a filtered format'''
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("select * from users;")
+
+    PII_List = ['name=', 'email=', 'phone=',
+                'ssn=', 'password=', 'ip=',
+                'last_login=', 'user_agent=']
+    for row in cursor:
+        row_string = ''
+        i = 0
+        for column in row:
+            row_string += PII_List[i] + str(column) + '; '
+            i += 1
+        log_record = logging.LogRecord("user_data", logging.INFO,
+                                       None, None, row_string, None, None)
+        # fields = []
+        # for item in PII_FIELDS:
+        #     fields.append(item)
+        formatter = RedactingFormatter(PII_FIELDS)
+        print(formatter.format(log_record))
+
+
+main()
