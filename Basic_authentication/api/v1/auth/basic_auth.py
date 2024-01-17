@@ -12,6 +12,9 @@ import binascii
 
 
 def read_json_file(file_path):
+    '''Function reads a json file
+        to later use the data in
+        BasicAuth class'''
     try:
         with open(file_path, 'r') as file:
             data = json.load(file)
