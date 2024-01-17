@@ -27,13 +27,13 @@ def before_request() -> str:
     '''Function filters request
         made by client to implement
         authentication'''
-    if auth is None:
-        pass
     excluded_paths = ['/api/v1/status/',
                       '/api/v1/unauthorized/',
                       '/api/v1/forbidden/']
-    if (auth.require_auth(request.path, excluded_paths)
-       is False):
+    if auth is None:
+        pass
+    elif (auth.require_auth(request.path, excluded_paths)
+          is False):
         # print(auth.require_auth(request.path, excluded_paths))
         pass
     elif auth.authorization_header(request) is None:
