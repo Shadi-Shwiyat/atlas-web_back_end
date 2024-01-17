@@ -23,7 +23,7 @@ class Auth():
             return True
         elif excluded_paths is None or len(excluded_paths) == 0:
             # print("excluded paths is None or empty")
-            return True 
+            return True
         elif path in excluded_paths:
             # print('path is in excluded paths')
             return False
