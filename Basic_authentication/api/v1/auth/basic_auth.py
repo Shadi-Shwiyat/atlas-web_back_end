@@ -5,8 +5,23 @@ from flask import request
 from typing import List
 from typing import TypeVar
 from api.v1.auth.auth import Auth
+from models.user import User
+import json
 import base64
 import binascii
+
+
+def read_json_file(file_path):
+    try:
+        with open(file_path, 'r') as file:
+            data = json.load(file)
+        return data
+    except FileNotFoundError:
+        print(f"File not found: {file_path}")
+        return None
+    except json.JSONDecodeError as e:
+        print(f"Error decoding JSON: {e}")
+        return None
 
 
 class BasicAuth(Auth):
@@ -59,3 +74,31 @@ class BasicAuth(Auth):
             password = decoded_base64_authorization_header[(semi_col_index
                                                             + 1):]
             return (email, password)
+
+    def user_object_from_credentials(self,
+                                     user_email: str,
+                                     user_pwd: str
+                                     ) -> TypeVar('User'):
+        '''Returns the User instance
+            based on user's email and
+            password'''
+        user_data = read_json_file('.db_User.json')
+        if (not user_email or
+           not user_pwd or
+           not isinstance(user_email, str) or
+           not isinstance(user_pwd, str) or
+           not user_data or
+           len(user_data) < 1):
+            # print('user/email/password doesnt exist or not a string')
+            return None
+        user_cls = User(email=user_email)
+        user_cls.password = user_pwd
+
+        matching_users = user_cls.search(attributes={'email': user_email})
+        if matching_users:
+            for user in matching_users:
+                if user.is_valid_password(user_pwd):
+                    return user
+        else:
+            # print("User not found.")
+            return None
