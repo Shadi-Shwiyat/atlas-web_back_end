@@ -18,7 +18,21 @@ class Auth():
         '''Public method that
             returns a boolean if path
             requires authorization'''
-        return False
+        if path is None:
+            # print('path is None')
+            return True
+        elif excluded_paths is None or len(excluded_paths) == 0:
+            # print("excluded paths is None or empty")
+            return True 
+        elif path in excluded_paths:
+            # print('path is in excluded paths')
+            return False
+        elif (path + "/") in excluded_paths:
+            # print('path + / is in excluded paths')
+            return False
+        elif path not in excluded_paths:
+            # print('path not in excluded paths')
+            return True
 
     def authorization_header(self,
                              request=None) -> str:
