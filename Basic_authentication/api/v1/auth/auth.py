@@ -8,7 +8,7 @@ from typing import TypeVar
 
 class Auth():
     '''An implementation
-        of a basic authentication system'''
+        of an authentication system'''
 
     def __init__(self) -> None:
         '''Constructor method of auth class'''
