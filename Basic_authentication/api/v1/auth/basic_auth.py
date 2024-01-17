@@ -14,3 +14,14 @@ class BasicAuth(Auth):
         '''Constructor method,
             inherits from parent'''
         super().__init__()
+
+    def extract_base64_authorization_header(self,
+                                            authorization_header: str) -> str:
+        '''Method returns the Base64 part
+            or the Authorization header'''
+        if (not authorization_header or
+           not isinstance(authorization_header, str) or
+           not authorization_header.startswith('Basic ')):
+            return None
+        else:
+            return authorization_header[len('Basic '):]
