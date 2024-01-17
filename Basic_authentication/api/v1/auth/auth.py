@@ -37,8 +37,14 @@ class Auth():
     def authorization_header(self,
                              request=None) -> str:
         '''Public method that
-            will return the auth
-            header'''
+            will return the authorization
+            header if it exist, otherwise
+            returns none'''
+        if (request is not None and
+           request.headers.get('Authorization')
+           is not None):
+            # print(request.headers.get('Authorization'))
+            return request.headers.get('Authorization')
         return None
 
     def current_user(self, request=None) -> TypeVar('User'):
