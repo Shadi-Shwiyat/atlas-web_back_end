@@ -72,3 +72,10 @@ In this project we are taking what we learned about basic authentication and app
 - How to send Cookies
 - How to parse Cookies
 
+## 8. User authentication service
+This project guides participants in implementing user authentication in a Flask app, covering API routes, cookies, and request form data, fostering a deeper understanding of the process.
+## Learning Objectives
+- How to declare API routes in a Flask app
+- How to get and set cookies
+- How to retrieve request form data
+- How to return various HTTP status codes
