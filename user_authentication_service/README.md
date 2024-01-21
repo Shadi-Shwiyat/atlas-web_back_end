@@ -289,6 +289,7 @@ bob@dylan:~$
 In this task, you will set up a basic Flask app.
 
 Create a Flask app that has a single GET route ("/") and use flask.jsonify to return a JSON payload of the form:
+
 `{"message": "Bienvenue"}`
 
 Add the following code at the end of the module:
@@ -309,9 +310,11 @@ AUTH = Auth()
 ```
 
 The end-point should expect two form data fields: "email" and "password". If the user does not exist, the end-point should register it and respond with the following JSON payload:
+
 `{"email": "<registered email>", "message": "user created"}`
 
 If the user is already registered, catch the exception and return a JSON payload of the form
+
 `{"message": "email already registered"}`
 
 and return a 400 status code
@@ -453,6 +456,7 @@ The request is expected to contain form data with "email" and a "password" field
 If the login information is incorrect, use flask.abort to respond with a 401 HTTP status.
 
 Otherwise, create a new session for the user, store it the session ID as a cookie with key "session_id" on the response and return a JSON payload of the form
+
 `{"email": "<user email>", "message": "logged in"}`
 
 ```
@@ -536,6 +540,7 @@ Find the user with the requested session ID. If the user exists destroy the sess
 In this task, you will implement a profile function to respond to the GET /profile route.
 
 The request is expected to contain a session_id cookie. Use it to find the user. If the user exist, respond with a 200 HTTP status and the following JSON payload:
+
 `{"email": "<user email>"}`
 
 If the session ID is invalid or the user does not exist, respond with a 403 HTTP status.
