@@ -62,3 +62,13 @@ In this project we learn authentication methods to provide security in the appli
 - How to encode a string in Base64
 - What Basic authentication means
 - How to send the Authorization header
+
+## 7. Session authentication
+In this project we are taking what we learned about basic authentication and apply it to implement a session authentication system
+## Learning Objectives
+- What authentication means
+- What session authentication means
+- What Cookies are
+- How to send Cookies
+- How to parse Cookies
+
