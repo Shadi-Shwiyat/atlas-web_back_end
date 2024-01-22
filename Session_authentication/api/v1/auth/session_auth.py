@@ -4,9 +4,27 @@ Session authentication class
 inherits from base Auth class
 '''
 from api.v1.auth.auth import Auth
+from models.user import User
 from flask import request
 import os
 import uuid
+import base64
+
+
+def read_json_file(file_path):
+    '''Function reads a json file
+        to later use the data in
+        BasicAuth class'''
+    try:
+        with open(file_path, 'r') as file:
+            data = json.load(file)
+        return data
+    except FileNotFoundError:
+        print(f"File not found: {file_path}")
+        return None
+    except json.JSONDecodeError as e:
+        print(f"Error decoding JSON: {e}")
+        return None
 
 
 class SessionAuth(Auth):
@@ -45,3 +63,17 @@ class SessionAuth(Auth):
             return None
         user_id = self.user_id_by_session_id.get(session_id)
         return user_id
+
+    def current_user(self, request=None):
+        '''returns a user instance
+            based on a cookie value'''
+        session_cookie = str(self.session_cookie(request))
+        # print('session cookie is:', session_cookie)
+        current_user = self.user_id_for_session_id(session_cookie)
+        # print('current user is:', current_user)
+
+        user_cls = User()
+        user = user_cls.get(current_user)
+        # print('user is:', user)
+
+        return user
