@@ -29,14 +29,16 @@ def before_request() -> str:
         authentication'''
     excluded_paths = ['/api/v1/status/',
                       '/api/v1/unauthorized/',
-                      '/api/v1/forbidden/']
+                      '/api/v1/forbidden/',
+                      '/api/v1/auth_session/login/']
     if auth is None:
         pass
     elif (auth.require_auth(request.path, excluded_paths)
           is False):
         # print(auth.require_auth(request.path, excluded_paths))
         pass
-    elif auth.authorization_header(request) is None:
+    elif (not auth.authorization_header(request) or
+          not auth.session_cookie(request)):
         abort(401)
     else:
         request.current_user = auth.current_user(request)
