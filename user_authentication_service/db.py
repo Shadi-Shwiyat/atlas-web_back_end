@@ -5,8 +5,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
-from typing import Type
-from flask import jsonify
 
 from user import Base, User
 
@@ -36,7 +34,7 @@ class DB:
     def add_user(self,
                  email: str,
                  hashed_password: str
-                 ) -> Type[User]:
+                 ) -> User:
         '''Adds user to db and returns
             user object'''
         user = User()
@@ -45,4 +43,4 @@ class DB:
         self.total_users += 1
         user.id = self.total_users
 
-        return jsonify(user)
+        return user
