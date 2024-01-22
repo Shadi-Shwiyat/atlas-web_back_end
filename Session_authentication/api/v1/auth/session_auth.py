@@ -11,22 +11,6 @@ import uuid
 import base64
 
 
-def read_json_file(file_path):
-    '''Function reads a json file
-        to later use the data in
-        BasicAuth class'''
-    try:
-        with open(file_path, 'r') as file:
-            data = json.load(file)
-        return data
-    except FileNotFoundError:
-        print(f"File not found: {file_path}")
-        return None
-    except json.JSONDecodeError as e:
-        print(f"Error decoding JSON: {e}")
-        return None
-
-
 class SessionAuth(Auth):
     '''Class builds upon base Auth
         class to implement a session
