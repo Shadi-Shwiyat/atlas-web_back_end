@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ Views for session authentication
 """
-from flask import jsonify, make_response, request
+from flask import jsonify, make_response, request, abort
 from api.v1.views import app_views
 from models.user import User
 import os
@@ -32,7 +32,7 @@ def login() -> dict:
             if user.is_valid_password(user_password):
                 from api.v1.app import auth
                 session_id = auth.create_session(user.id)
-                # print('sessoin id is:',session_id)
+                print('sessoin id is:',session_id)
                 cookie_name = os.getenv('SESSION_NAME')
                 # print('sessoin cookie name is:',cookie_name)
                 # cookie_value = request.cookies.get('_my_session_id')
@@ -48,3 +48,17 @@ def login() -> dict:
     elif not matching_users:
         # print("User not found.")
         return jsonify({"error": "no user found for this email"}), 404
+
+
+@app_views.route('/auth_session/logout',
+                 methods=['DELETE'],
+                 strict_slashes=False)
+def logout() -> dict:
+    '''Logging user out
+        using delete request'''
+    from api.v1.app import auth
+    bool = auth.destroy_session(request)
+    if bool is False:
+        abort(404)
+    else:
+        return jsonify({}), 200
