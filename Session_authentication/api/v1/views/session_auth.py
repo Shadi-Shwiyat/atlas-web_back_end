@@ -19,10 +19,10 @@ def login() -> dict:
     # print(user_password)
 
     if (not user_email):
-        return jsonify({ "error": "email missing" }), 400
+        return jsonify({"error": "email missing"}), 400
     if (not user_password):
-        return jsonify({ "error": "password missing" }), 400
-    
+        return jsonify({"error": "password missing"}), 400
+
     user_cls = User(email=user_email)
     user_cls.password = user_password
 
@@ -44,7 +44,7 @@ def login() -> dict:
                 # print(response)
 
                 return response
-        return jsonify({ "error": "wrong password" }), 401
+        return jsonify({"error": "wrong password"}), 401
     elif not matching_users:
         # print("User not found.")
-        return jsonify({ "error": "no user found for this email" }), 404
+        return jsonify({"error": "no user found for this email"}), 404
