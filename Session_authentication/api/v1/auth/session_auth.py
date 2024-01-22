@@ -4,6 +4,8 @@ Session authentication class
 inherits from base Auth class
 '''
 from api.v1.auth.auth import Auth
+from flask import request
+import os
 import uuid
 
 
