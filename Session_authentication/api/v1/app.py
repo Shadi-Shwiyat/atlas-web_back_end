@@ -37,7 +37,7 @@ def before_request() -> str:
           is False):
         # print(auth.require_auth(request.path, excluded_paths))
         pass
-    elif (not auth.authorization_header(request) or
+    elif (not auth.authorization_header(request) and
           not auth.session_cookie(request)):
         abort(401)
     else:
