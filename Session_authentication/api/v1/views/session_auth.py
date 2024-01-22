@@ -32,7 +32,7 @@ def login() -> dict:
             if user.is_valid_password(user_password):
                 from api.v1.app import auth
                 session_id = auth.create_session(user.id)
-                print('sessoin id is:',session_id)
+                # print('sessoin id is:',session_id)
                 cookie_name = os.getenv('SESSION_NAME')
                 # print('sessoin cookie name is:',cookie_name)
                 # cookie_value = request.cookies.get('_my_session_id')
