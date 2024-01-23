@@ -5,6 +5,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
+from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.exc import InvalidRequestError
 
 from user import Base, User
 
@@ -42,5 +44,18 @@ class DB:
         user.hashed_password = hashed_password
         self.total_users += 1
         user.id = self.total_users
+        user.session_id = str(self.total_users)
+        user.reset_token = 'reset'
+
+        session = self._session
+        session.add(user)
+        session.commit()
 
         return user
+
+    # def find_user_by(**kwargs) ->  str:
+    #     '''Returns first row found
+    #         in users table filtered by
+    #         the methods input kwargs'''
+    #     user = User()
+    #     for kwarg in kwargs:
