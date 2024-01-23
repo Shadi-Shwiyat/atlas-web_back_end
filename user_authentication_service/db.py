@@ -64,3 +64,27 @@ class DB:
             return user
         except (NoResultFound, InvalidRequestError) as error:
             raise error
+
+    def update_user(self, user_id: int,
+                    **kwargs) -> None:
+        '''Updates user based on given ID
+            and the given kwargs to update'''
+        user = self.find_user_by(id=user_id)
+        session = self._session
+        # print(user.hashed_password)
+        email = kwargs.get('email')
+        hsh_pwd = kwargs.get('hashed_password')
+        if (not email and not hsh_pwd):
+            raise ValueError
+        elif not email:
+            try:
+                user.hashed_password = hsh_pwd
+                session.commit()
+            except ValueError as e:
+                raise e
+        elif not hsh_pwd:
+            try:
+                user.email = email
+                session.commit()
+            except ValueError as e:
+                raise e
