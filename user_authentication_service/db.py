@@ -53,9 +53,14 @@ class DB:
 
         return user
 
-    # def find_user_by(**kwargs) ->  str:
-    #     '''Returns first row found
-    #         in users table filtered by
-    #         the methods input kwargs'''
-    #     user = User()
-    #     for kwarg in kwargs:
+    def find_user_by(self, **kwargs) -> User:
+        '''Returns first row found
+            in users table filtered by
+            the methods input kwargs'''
+        user_class = User
+        session = self._session
+        try:
+            user = session.query(user_class).filter_by(**kwargs).one()
+            return user
+        except (NoResultFound, InvalidRequestError) as error:
+            raise error
