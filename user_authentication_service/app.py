@@ -77,8 +77,7 @@ def get_reset_password_token():
         abort(403)
     if user:
         reset_token = AUTH.get_reset_password_token()
-        return jsonify({"email": f"{user.email}",
-                        "reset_token": f"{user.reset_token}"}), 200
+        return jsonify({"email": email, "reset_token": reset_token}), 200
 
 
 if __name__ == "__main__":
