@@ -73,27 +73,39 @@ class DB:
         email = kwargs.get('email')
         hsh_pwd = kwargs.get('hashed_password')
         reset_token = kwargs.get('reset_token')
+        password = kwargs.get('password')
         if (not email and not hsh_pwd
-            and not reset_token):
+            and not reset_token and not
+            password):
             raise ValueError
         elif (not email
-              and not reset_token):
+              and not reset_token
+              and not password):
             try:
                 user.hashed_password = hsh_pwd
                 session.commit()
             except ValueError as e:
                 raise e
         elif (not hsh_pwd and
-              not reset_token):
+              not reset_token
+              and not password):
             try:
                 user.email = email
                 session.commit()
             except ValueError as e:
                 raise e
         elif (not hsh_pwd and
-              not email):
+              not email
+              and not password):
             try:
                 user.reset_token = reset_token
                 session.commit()
             except ValueError as e:
                 raise e
+        else:
+            try:
+                user.hashed_password = password
+                session.commit()
+            except ValueError as e:
+                raise e
+            
