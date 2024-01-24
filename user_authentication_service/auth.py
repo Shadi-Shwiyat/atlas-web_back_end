@@ -70,3 +70,18 @@ class Auth():
         except (NoResultFound, InvalidRequestError):
             # print('no user found')
             return None
+
+    def get_user_from_session_id(self,
+                                 session_id: str
+                                 ) -> User or None:
+        '''Takes in the session id and
+            finds the user corresponding to that
+            id'''
+        if not session_id:
+            return None
+        try:
+            user = self._db.find_user_by(session_id=session_id)
+            if user:
+                return user
+        except (NoResultFound, InvalidRequestError):
+            return None
