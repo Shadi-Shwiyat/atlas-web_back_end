@@ -97,3 +97,5 @@ class Auth():
                 user.session_id = None
         except (NoResultFound, InvalidRequestError):
             return None
+
+    def get_reset_password_toe
