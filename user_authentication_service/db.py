@@ -44,7 +44,6 @@ class DB:
         user.hashed_password = hashed_password
         self.total_users += 1
         user.id = self.total_users
-        user.session_id = str(self.total_users)
 
         session = self._session
         session.add(user)
