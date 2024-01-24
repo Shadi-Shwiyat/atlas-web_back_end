@@ -45,7 +45,6 @@ class DB:
         self.total_users += 1
         user.id = self.total_users
         user.session_id = str(self.total_users)
-        user.reset_token = 'reset'
 
         session = self._session
         session.add(user)
