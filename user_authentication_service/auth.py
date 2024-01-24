@@ -106,7 +106,7 @@ class Auth():
             user = self._db.find_user_by(email=email)
             if user:
                 reset_token = uuid.uuid4()
-                user.reset_token = reset_token
+                self._db.update_user(user.id, reset_token=reset_token)
                 return reset_token
         except (NoResultFound, InvalidRequestError):
             raise ValueError()
