@@ -79,3 +79,9 @@ This project guides participants in implementing user authentication in a Flask 
 - How to get and set cookies
 - How to retrieve request form data
 - How to return various HTTP status codes
+
+## 9. Unittests and Integration Tests
+This project focuses on grasping the distinctions between unit tests and integration tests, while also delving into common testing patterns.
+## Learning Objectives
+- The difference between unit and integration tests.
+- Common testing patterns such as mocking, parametrizations and fixtures
