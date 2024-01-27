@@ -41,11 +41,11 @@ class TestAccessNestedMap(unittest.TestCase):
                                          nested_map: Mapping,
                                          path: Sequence,
                                          expected_result: Any
-                                         ) -> Any:
+                                         ) -> None:
         '''Method catches any errors
             raised by access_nested_map'''
-        result = access_nested_map(nested_map, path)
-        self.assertRaises(result, expected_result)
+        with self.assertRaises(expected_result):
+            access_nested_map(nested_map, path)
 
 
 if __name__ == "__main__":
