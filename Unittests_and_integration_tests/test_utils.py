@@ -30,7 +30,7 @@ class TestAccessNestedMap(unittest.TestCase):
         '''Method asserts that output of
             access_nested_map is as expected'''
         result = access_nested_map(nested_map, path)
-        print(result)
+        # print(result)
         self.assertEqual(result, expected_result)
 
 
