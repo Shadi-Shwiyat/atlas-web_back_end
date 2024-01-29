@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 '''Unittest module for utils.py'''
 import unittest
-from unittest.mock import patch, MagicMock, Mock
+from unittest.mock import (
+    patch,
+    MagicMock,
+    Mock,
+    PropertyMock
+)
 from client import GithubOrgClient
 from parameterized import parameterized
 import requests
@@ -35,6 +40,18 @@ class TestGithubOrgClient(unittest.TestCase):
 
         mock_get_json.assert_called_once_with(
             f'https://api.github.com/orgs/{org_name}')
+
+    @patch('client.GithubOrgClient.org',
+           PropertyMock(return_value={
+               'repos_url': 'https://api.github.com/orgs/org/repos'
+               }))
+    def test_public_repos_url(self):
+        client = GithubOrgClient('org')
+        # print('mocked org returns:', client.org['repos_url'])
+
+        result = client._public_repos_url
+        # print('result is:', result)
+        self.assertEqual(result, 'https://api.github.com/orgs/org/repos')
 
 
 if __name__ == "__main__":
