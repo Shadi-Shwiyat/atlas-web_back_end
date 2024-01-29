@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 '''Unittest module for utils.py'''
 import unittest
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch, MagicMock, Mock
 from utils import access_nested_map, get_json, memoize
 from parameterized import parameterized
 import requests
@@ -82,39 +82,28 @@ class TestMemoize(unittest.TestCase):
     def __init__(self, methodName: str = "runTest") -> None:
         super().__init__(methodName)
 
-    @patch('test_utils.TestClass.a_method')
-    def test_memoize(self,
-                     mock_method: MagicMock
+    def test_memoize(self
                      ) -> None:
         '''Method asserts that output of
             memoize is as expected'''
 
         class TestClass:
-            '''Class setup to test memoize function'''
-            def __init__(self, prev_value=None):
-                '''Constructor method'''
-                self.prev_value = prev_value
 
             def a_method(self):
-                '''Arbituary method to return
-                the meaning of life'''
                 return 42
 
             @memoize
             def a_property(self):
-                '''Returns value of a_method if
-                it is not already memoized'''
-                if not self.prev_value:
-                    self.prev_value = self.a_method
-                    return self.prev_value
-                else:
-                    return self.prev_value
+                return self.a_method()
 
-        mock_method.return_value = 42
-        test_class = TestClass()
-        test_class.a_property()
-        test_class.a_property()
-        mock_method.assert_called_once()
+        with patch.object(TestClass, 'a_method',
+                          return_value=42) as mock_method:
+            instance = TestClass()
+            self.assertEqual(instance.a_property,
+                             mock_method.return_value)
+            self.assertEqual(instance.a_property,
+                             mock_method.return_value)
+            mock_method.assert_called_once()
 
 
 if __name__ == "__main__":
