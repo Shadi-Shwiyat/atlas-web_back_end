@@ -32,6 +32,7 @@ class TestGithubOrgClient(unittest.TestCase):
     ])
     @patch('client.get_json', return_value={'some': 'data'})
     def test_org(self, org_name, mock_get_json):
+        '''Testing the org method'''
         github_org_client = GithubOrgClient(org_name)
 
         result = github_org_client.org
@@ -46,6 +47,7 @@ class TestGithubOrgClient(unittest.TestCase):
                'repos_url': 'https://api.github.com/orgs/org/repos'
                }))
     def test_public_repos_url(self):
+        '''Testing the public repo property'''
         client = GithubOrgClient('org')
         # print('mocked org returns:', client.org['repos_url'])
 
@@ -64,6 +66,7 @@ class TestGithubOrgClient(unittest.TestCase):
                'repos_url': 'https://api.github.com/orgs/org/repos'
            })
     def test_public_repos(self, mock_org, mock_get_json):
+        '''Testing the public repos method'''
         client = GithubOrgClient('org')
 
         result = client.public_repos()
