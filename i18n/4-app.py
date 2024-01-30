@@ -14,12 +14,18 @@ class Config:
 app = Flask(__name__)
 app.config.from_object(Config)
 babel = Babel(app)
-babel.init_app(app, locale_selector=get_locale)
 
 
 def get_locale():
     '''Determine the best-matching language using request.accept_languages'''
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
+    locale = request.args.get('locale')
+    if not locale or locale not in app.config['LANGUAGES']:
+        return request.accept_languages.best_match(app.config['LANGUAGES'])
+    else:
+        return locale
+
+
+babel.init_app(app, locale_selector=get_locale)
 
 
 @app.route('/')
@@ -28,7 +34,7 @@ def hello():
     returns hello world'''
     home_title = 'title'
     home_header = 'header'
-    return render_template('3-index.html')
+    return render_template('4-index.html')
 
 
 if __name__ == '__main__':
