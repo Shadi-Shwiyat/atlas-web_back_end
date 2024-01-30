@@ -11,7 +11,6 @@ app.config['BABEL_DEFAULT_LOCALE'] = 'en'
 app.config['BABEL_DEFAULT_TIMEZONE'] = 'UTC'
 
 
-
 @app.route('/')
 def hello():
     '''Basic initial route
