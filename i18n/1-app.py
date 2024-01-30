@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
 '''Basic flask app with one route'''
 from flask import Flask, render_template
+from flask_babel import Babel
 
 app = Flask(__name__)
+babel = Babel(app)
+
+app.config['BABEL_LANGUAGES'] = ['en', 'fr']
+app.config['BABEL_DEFAULT_LOCALE'] = 'en'
+app.config['BABEL_DEFAULT_TIMEZONE'] = 'UTC'
 
 
 @app.route('/')
