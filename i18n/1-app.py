@@ -8,6 +8,8 @@ babel = Babel(app)
 
 app.config['BABEL_LANGUAGES'] = ['en', 'fr']
 app.config['BABEL_DEFAULT_LOCALE'] = 'en'
+
+babel.init_app(app)
 app.config['BABEL_DEFAULT_TIMEZONE'] = 'UTC'
 
 
