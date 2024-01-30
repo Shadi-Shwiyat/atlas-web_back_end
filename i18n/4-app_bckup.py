@@ -16,7 +16,6 @@ app.config.from_object(Config)
 babel = Babel(app)
 
 
-@babel.localeselector
 def get_locale():
     '''Determine the best-matching language using request.accept_languages'''
     locale = request.args.get('locale')
@@ -29,6 +28,9 @@ def get_locale():
         return locale
 
 
+babel.init_app(app, locale_selector=get_locale)
+
+
 @app.route('/')
 def hello():
     '''Basic initial route
@@ -37,4 +39,4 @@ def hello():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5000, debug=True)
