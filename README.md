@@ -65,7 +65,7 @@ In this project we learn authentication methods to provide security in the appli
 
 ## 7. Session authentication
 In this project we are taking what we learned about basic authentication and apply it to implement a session authentication system
-## Learning Objectives
+### Learning Objectives
 - What authentication means
 - What session authentication means
 - What Cookies are
@@ -82,6 +82,13 @@ This project guides participants in implementing user authentication in a Flask 
 
 ## 9. Unittests and Integration Tests
 This project focuses on grasping the distinctions between unit tests and integration tests, while also delving into common testing patterns.
-## Learning Objectives
+### Learning Objectives
 - The difference between unit and integration tests.
 - Common testing patterns such as mocking, parametrizations and fixtures
+
+## 10. i18n
+This project explores the intricacies of internationalization (i18n) in a Flask application
+### Learning Objectives
+- Learn how to parametrize Flask templates to display different languages
+- Learn how to infer the correct locale based on URL parameters, user settings or request headers
+- Learn how to localize timestamps
