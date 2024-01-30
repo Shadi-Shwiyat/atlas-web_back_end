@@ -1,22 +1,15 @@
 #!/usr/bin/env python3
 '''Unittest module for utils.py'''
 import unittest
+import requests
 from unittest.mock import (
     patch,
-    MagicMock,
-    Mock,
-    PropertyMock
+    PropertyMock,
+    MagicMock
 )
 from client import GithubOrgClient
-from parameterized import parameterized
-import requests
-from typing import (
-    Mapping,
-    Sequence,
-    Any,
-    Dict,
-    Callable,
-)
+from parameterized import parameterized, parameterized_class
+from fixtures import TEST_PAYLOAD
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -94,6 +87,48 @@ class TestGithubOrgClient(unittest.TestCase):
         result = client.has_license(license, license_key)
 
         self.assertEqual(result, expected_result)
+
+
+@parameterized_class([
+    {'org_payload': TEST_PAYLOAD[0][0]},
+    {'repos_payload': TEST_PAYLOAD[0][1]},
+    {'expected_repos': TEST_PAYLOAD[0][2]},
+    {'apache2_repos': TEST_PAYLOAD[0][3]}
+])
+class TestIntegrationGithubOrgClient(unittest.TestCase):
+    '''Inherits from testcase,
+        integration test class for
+        public_repos method'''
+    def __init__(self, methodName: str = "runTest") -> None:
+        super().__init__(methodName)
+
+    @classmethod
+    def setUpClass(cls):
+        '''Sets up the class
+        with parameters for test'''
+        # print('org_payload is:', TEST_PAYLOAD[0][0])
+        # print('repos_payload is:', TEST_PAYLOAD[0][1])
+        # print('expected_repos is:', TEST_PAYLOAD[0][2])
+        # print('apache2_repos is:', TEST_PAYLOAD[0][3])
+        cls.get_patcher = patch('requests.get')
+        cls.mock_get = cls.get_patcher.start()
+
+        # Set side effects for different URLs
+        cls.mock_get.side_effect = [
+            MagicMock(json=lambda: cls.org_payload),
+            MagicMock(json=lambda: cls.repos_payload),
+            MagicMock(json=lambda: cls.apache2_repos)
+        ]
+
+    @classmethod
+    def tearDownClass(cls):
+        '''Tears down class to prep
+        for next test'''
+        cls.get_patcher.stop()
+
+    # def test_example1(self):
+    #     '''Testing payload output'''
+    #     print('setup called to print payloads')
 
 
 if __name__ == "__main__":
