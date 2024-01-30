@@ -7,6 +7,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
+    '''Basic initial route
+    returns hello world'''
     return 'Hello World'
 
 
