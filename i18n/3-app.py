@@ -14,9 +14,9 @@ class Config:
 app = Flask(__name__)
 app.config.from_object(Config)
 babel = Babel(app)
-babel.init_app(app, locale_selector=get_locale)
 
 
+@babel.locale_selector
 def get_locale():
     '''Determine the best-matching language using request.accept_languages'''
     return request.accept_languages.best_match(app.config['LANGUAGES'])
