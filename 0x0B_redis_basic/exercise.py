@@ -2,7 +2,7 @@
 '''Simple redis caching system'''
 import redis
 import uuid
-from typing import Any
+from typing import Union
 
 
 class Cache():
@@ -14,7 +14,10 @@ class Cache():
         self._redis = redis.Redis()
         self._redis.flushdb()
 
-    def store(self, data: Any) -> str:
+    def store(self, data: Union(str,
+                                bytes,
+                                int,
+                                float)) -> str:
         '''Returns stringified version
         of the passed in data, stores data
         using random key from uuid()'''
