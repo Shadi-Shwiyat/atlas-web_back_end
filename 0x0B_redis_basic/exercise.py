@@ -25,7 +25,8 @@ class Cache():
         self._redis.set(key, data)
         return key
 
-    def get(self, key: str, fn: Callable) -> bytes:
+    def get(self, key: str,
+            fn: Callable=None) -> bytes:
         '''Gets data from db and returns as
         byte string'''
         if fn:
