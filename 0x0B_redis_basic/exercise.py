@@ -13,12 +13,29 @@ def count_calls(method: Callable) -> Callable:
     key = method.__qualname__
 
     @wraps(method)
-    def increment_count(self: object, *args, **kwargs) -> int:
+    def increment_count(self: object, *args,
+                        **kwargs) -> Callable:
         '''Increment value for method given'''
         self._redis.incr(key)
         return method(self, *args, **kwargs)
 
     return increment_count
+
+
+def call_history(method: Callable) -> Callable:
+    '''Returns callable function that stores io'''
+    input_key = method.__qualname__ + ':inputs'
+    output_key = method.__qualname__ + ':outputs'
+
+    @wraps(method)
+    def store_io(self, *args, **kwargs) -> Callable:
+        '''Stores the input and outputs of method calls'''
+        self._redis.rpush(input_key, str(args))
+        output = method(self, *args, **kwargs)
+        self._redis.rpush(output_key, str(output))
+        return output
+
+    return store_io
 
 
 class Cache():
@@ -30,6 +47,7 @@ class Cache():
         self._redis = redis.Redis()
         self._redis.flushdb()
 
+    @call_history
     @count_calls
     def store(self, data: Union[str,
                                 bytes,
