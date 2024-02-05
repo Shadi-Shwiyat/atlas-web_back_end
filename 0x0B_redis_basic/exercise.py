@@ -3,6 +3,22 @@
 import redis
 import uuid
 from typing import Union, Callable
+from functools import wraps
+
+
+def count_calls(method: Callable) -> Callable:
+    '''Decorator counts times a method
+    of the class has been called
+    '''
+    key = method.__qualname__
+
+    @wraps(method)
+    def increment_count(self: object, *args, **kwargs) -> int:
+        '''Increment value for method given'''
+        self._redis.incr(key)
+        return method(self, *args, **kwargs)
+
+    return increment_count
 
 
 class Cache():
@@ -14,6 +30,7 @@ class Cache():
         self._redis = redis.Redis()
         self._redis.flushdb()
 
+    @count_calls
     def store(self, data: Union[str,
                                 bytes,
                                 int,
@@ -26,7 +43,7 @@ class Cache():
         return key
 
     def get(self, key: str,
-            fn: Callable=None) -> bytes:
+            fn: Callable = None) -> bytes:
         '''Gets data from db and returns as
         byte string'''
         if fn:
