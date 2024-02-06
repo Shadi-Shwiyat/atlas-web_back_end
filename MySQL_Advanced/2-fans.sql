@@ -14,4 +14,4 @@ GROUP BY origin;
 
 SELECT *
 FROM tmp_res
-ORDER BY nb_fans DESC;
+ORDER BY nb_fans DESC, origin ASC;
