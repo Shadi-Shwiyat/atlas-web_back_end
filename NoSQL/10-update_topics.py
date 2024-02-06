@@ -8,4 +8,4 @@ def update_topics(mongo_collection, name, topics) -> None:
         document based on the name'''
     filter_query = {'name': name}
     update_query = {'$set': {'topics': topics}}
-    mongo_collection.update_one(filter_query, update_query)
+    mongo_collection.update_many(filter_query, update_query)
