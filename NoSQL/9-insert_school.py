@@ -3,7 +3,9 @@
 import pymongo
 
 
-def insert_school(mongo_collection, **kwargs) -> list:
-    '''Returns a list of all docs
-        in a mongodb collection'''
-    return list(mongo_collection.find())
+def insert_school(mongo_collection, **kwargs) -> int:
+    '''Inserts a new document in a
+        collection based on kwargs'''
+    result = mongo_collection.insert_one(kwargs)
+
+    return result.inserted_id
