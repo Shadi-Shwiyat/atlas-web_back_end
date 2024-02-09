@@ -7,10 +7,10 @@ This project delves into the basics of redis
 
 ## Tasks
 0. [Writing strings to Redis](#task0)
-1. [Task](#task1)
-2. [Task](#task2)
-3. [Task](#task3)
-4. [Task](#task4)
+1. [Reading from Redis and recovering original type](#task1)
+2. [Incrementing values](#task2)
+3. [Storing lists](#task3)
+4. [Retrieving lists](#task4)
 
 ### <a name="task0"></a>0. Writing strings to Redis
 Create a Cache class. In the __init__ method, store an instance of the Redis client as a private variable named _redis (using redis.Redis()) and flush the instance using flushdb.
