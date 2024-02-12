@@ -92,3 +92,31 @@ This project explores the intricacies of internationalization (i18n) in a Flask 
 - Learn how to parametrize Flask templates to display different languages
 - Learn how to infer the correct locale based on URL parameters, user settings or request headers
 - Learn how to localize timestamps
+
+## 11. Redis basic
+This project delves into the basics of redis as a simple cache
+### Learning Objectives
+- Learn how to use redis for basic operations
+- Learn how to use redis as a simple cache
+
+## 12. MySQL advanced
+This project dives into advanced concepts and techniques of MySQL
+### Learning Objectives
+- How to create tables with constraints
+- How to optimize queries by adding indexes
+- What is and how to implement stored procedures and functions in MySQL
+- What is and how to implement views in MySQL
+- What is and how to implement triggers in MySQL
+
+## 13. NoSQL
+This project explores Non-Relational databases and how to use MongoDB
+### Learning Objectives
+- What NoSQL means
+- What is difference between SQL and NoSQL
+- What is ACID
+- What is a document storage
+- What are NoSQL types
+- What are benefits of a NoSQL database
+- How to query information from a NoSQL database
+- How to insert/update/delete information from a NoSQL database
+- How to use MongoDB
