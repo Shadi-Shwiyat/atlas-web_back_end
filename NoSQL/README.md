@@ -26,14 +26,6 @@ This project explores Non-Relational databases and how to use MongoDB
 10. [Change school topics](#task10)
 11. [Where can I learn Python?](#task11)
 12. [Log stats](#task12)
-13. [Task](#task13)
-14. [Task](#task14)
-15. [Task](#task15)
-16. [Task](#task16)
-17. [Task](#task17)
-18. [Task](#task18)
-19. [Task](#task19)
-20. [Task](#task20)
 
 ### <a name="task0"></a>0. List all databases
 Write a script that lists all databases in MongoDB.
