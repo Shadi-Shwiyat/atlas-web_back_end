@@ -120,3 +120,16 @@ This project explores Non-Relational databases and how to use MongoDB
 - How to query information from a NoSQL database
 - How to insert/update/delete information from a NoSQL database
 - How to use MongoDB
+
+## 14. NodeJS Basics
+Master Node.js for file manipulation, command line, basic/advanced HTTP servers (Express.js), ES6 (Babel-node), and efficient development with Nodemon.
+### Learning Objectives
+- run javascript using NodeJS
+- use NodeJS modules
+- use specific Node JS module to read files
+- use process to access command line arguments and the environment
+- create a small HTTP server using Node JS
+- create a small HTTP server using Express JS
+- create advanced routes with Express JS
+- use ES6 with Node JS with Babel-node
+- use Nodemon to develop faster
