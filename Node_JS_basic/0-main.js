@@ -1,6 +1,7 @@
-const { expect } = require('chai');
-const sinon = require('sinon');
-const displayMessage = require('./0-console.js');
+import { expect } from 'chai';
+import sinon from 'sinon'; 
+
+import displayMessage from './0-console.js';
 
 describe('displayMessage', () => {
   let consoleSpy;
