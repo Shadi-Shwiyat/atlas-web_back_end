@@ -1,6 +1,5 @@
 {
     "name": "node_js_basics",
-    "type": "module",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -30,4 +29,3 @@
         "sinon": "^7.5.0"
     }
 }
-  
