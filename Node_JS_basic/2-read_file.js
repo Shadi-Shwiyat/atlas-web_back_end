@@ -10,7 +10,7 @@ function countStudents(path) {
     // Log the number of students
     const rows = data.split('\n');
     const rowCount = rows.length - 1;
-    console.log('Number of students:', rowCount);
+    console.log(`Number of students: ${rowCount}`);
 
     // Log number of students in cs
     let csStudents = 0;
