@@ -9,12 +9,12 @@ function countStudents(path) {
         reject(new Error('Cannot load the database'));
         return;
       }
-  
+
       // Log the number of students
       const rows = data.split('\n');
       const rowCount = rows.length - 2;
       console.log(`Number of students: ${rowCount}`);
-  
+
       // Log number of students in cs
       let csStudents = 0;
       const csStudentsList = [];
@@ -27,7 +27,7 @@ function countStudents(path) {
         }
       }
       console.log(`Number of students in CS: ${csStudents}. List: ${csStudentsList.join(', ')}`);
-  
+
       // Log number of students in swe
       let sweStudents = 0;
       const sweStudentsList = [];
