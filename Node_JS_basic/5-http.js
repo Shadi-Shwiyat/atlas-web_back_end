@@ -16,10 +16,18 @@ const app = http.createServer((req, res) => {
 
     return new Promise((resolve, reject) => {
       const path = process.argv[2];
+      if (path === undefined) {
+        reject(new Error('Cannot load the database'));
+        res.write('Cannot load the database');
+        res.end();
+        return;
+      }
 
       fs.readFile(path, 'utf-8', (err, data) => {
         if (err) {
           reject(new Error('Cannot load the database'));
+          res.write('Cannot load the database');
+          res.end();
           return;
         }
 
@@ -58,6 +66,11 @@ const app = http.createServer((req, res) => {
       });
     });
   }
+
+  // If request url is not found
+  res.writeHead(404, { 'Content-Type': 'text/plain' });
+  res.write('Not Found');
+  res.end();
 });
 
 app.listen(1245);
