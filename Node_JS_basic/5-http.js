@@ -7,6 +7,7 @@ const fs = require('fs');
 // Create server and listen on port 1245
 const app = http.createServer((req, res) => {
   if (req.url === '/') {
+    // console.log(res.statusCode);
     res.write('Hello Holberton School!');
     res.end();
   }
@@ -66,11 +67,6 @@ const app = http.createServer((req, res) => {
       });
     });
   }
-
-  // If request url is not found
-  res.writeHead(404, { 'Content-Type': 'text/plain' });
-  res.write('Not Found');
-  res.end();
 });
 
 app.listen(1245);
