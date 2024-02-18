@@ -9,7 +9,7 @@ if (process.argv.length === 2 && process.stdin.isTTY) {
   process.stdin.on('readable', () => {
     const userName = process.stdin.read();
     if (userName !== null) {
-        process.stdout.write(`Your name is: ${userName}`);
+      process.stdout.write(`Your name is: ${userName}`);
     }
   });
 } else {
