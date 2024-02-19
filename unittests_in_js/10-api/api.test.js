@@ -64,7 +64,7 @@ describe('Route (/login)', function () {
 
       expect(res.statusCode).to.equal(200);
 
-      expect(body).to.equal('Welcome: Betty');
+      expect(body).to.equal('Welcome Betty');
 
       done();
     });
