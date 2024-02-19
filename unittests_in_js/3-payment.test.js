@@ -6,21 +6,20 @@ const Utils = require('./utils');
 const sendPaymentRequestToApi = require('./3-payments');
 
 const { expect } = chai;
-const sandbox = sinon.createSandbox();
 
 describe('sendPaymentRequestToApi', () => {
+  const spy = sinon.spy(Utils, 'calculateNumber');
+
   afterEach(() => {
-    sandbox.restore();
+    spy.restore();
   });
 
   it('calls Utils.calculateNumber with correct arguments', () => {
 
-    const calculateNumberSpy = sandbox.spy(Utils, 'calculateNumber');
-
     sendPaymentRequestToApi(100, 20);
 
-    expect(calculateNumberSpy.calledOnce).to.be.true;
+    expect(spy.calledOnce).to.be.true;
 
-    expect(calculateNumberSpy.calledWithExactly('SUM', 100, 20)).to.be.true;
+    expect(spy.calledWithExactly('SUM', 100, 20)).to.be.true;
   });
 });
