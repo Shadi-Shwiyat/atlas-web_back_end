@@ -18,14 +18,14 @@ app.get('/students', (req, res) => {
     const path = process.argv[2];
     if (path === undefined) {
       reject(new Error('Cannot load the database'));
-      res.status(500).send('Cannot load the database');
+      res.status(500).send('This is the list of our students\nCannot load the database');
       return;
     }
 
     fs.readFile(path, 'utf-8', (err, data) => {
       if (err) {
         reject(new Error('Cannot load the database'));
-        res.status(500).send('Cannot load the database');
+        res.status(500).send('This is the list of our students\nCannot load the database');
         return;
       }
 
