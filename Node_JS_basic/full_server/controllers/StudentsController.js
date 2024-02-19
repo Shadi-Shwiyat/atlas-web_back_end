@@ -4,49 +4,45 @@
 const readDatabase = require('../utils');
 
 class StudentsController {
-  static getAllStudents(request, response) {
+  static async getAllStudents(req, res) {
     try {
-      const filepath = 'path/to/your/database/file'; // Replace with the actual path
-      const data = readDatabase(filepath);
-      if (!data) {
-        throw new Error('Cannot load the database');
-      }
+      const data = await readDatabase('./database.csv');
+      // Process data and generate response
+      let response = 'This is the list of our students\n';
 
-      const keys = Object.keys(data);
-      const fields = keys.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+      // Iterate over fields in alphabetic order
+      Object.keys(data).sort((a, b) => a.localeCompare(b)).forEach((field) => {
+        const numberOfStudents = data[field].length;
+        const listOfFirstNames = data[field].join(', ');
 
-      response.status(200).send('This is the list of our students\n');
-
-      fields.forEach((field) => {
-        const studentsInField = data[field].length;
-        const studentList = data[field].sort().join(', ');
-        response.write(`Number of students in ${field}: ${studentsInField}. List: ${studentList}\n`);
+        response += `Number of students in ${field}: ${numberOfStudents}. List: ${listOfFirstNames}\n`;
       });
 
-      response.end();
+      res.status(200).send(response);
     } catch (error) {
-      response.status(500).send(`Cannot load the database. Error: ${error.message}`);
+      res.status(500).send(`Cannot load the database: ${error}`);
     }
   }
 
-  static getAllStudentsByMajor(request, response) {
-    try {
-      const filepath = 'path/to/your/database/file'; // Replace with the actual path
-      const data = readDatabase(filepath);
-      if (!data) {
-        throw new Error('Cannot load the database');
-      }
+  static async getAllStudentsByMajor(req, res) {
+    const { major } = req.params;
 
-      const { major } = request.query;
-      if (major && (major.toUpperCase() === 'CS' || major.toUpperCase() === 'SWE')) {
-        const studentsInMajor = data[major.toUpperCase()].sort().join(', ');
-        response.status(200).send(`List: ${studentsInMajor}\n`);
-      } else {
-        response.status(500).send('Major parameter must be CS or SWE');
-      }
-    } catch (error) {
-      response.status(500).send(`Cannot load the database. Error: ${error.message}`);
+    if (major !== 'CS' && major !== 'SWE') {
+      return res.status(500).send('Major parameter must be CS or SWE');
     }
+
+    try {
+      const data = await readDatabase('./database.csv');
+      // Process data for the specified major and generate response
+      const response = `List: ${data[major].join(', ')}`;
+
+      res.status(200).send(response);
+    } catch (error) {
+      res.status(500).send(`Cannot load the database: ${error}`);
+    }
+
+    // Default return statement in case of an unexpected code path
+    return res.status(500).send('Unexpected error in getAllStudentsByMajor');
   }
 }
 
