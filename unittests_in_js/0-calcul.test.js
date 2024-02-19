@@ -16,8 +16,8 @@ describe('calculateNumber', () => {
   });
 
   it('rounds second number', () => {
-    const result = calculateNumber(1, 3.7);
-    assert.equal(result, 5);
+    const result = calculateNumber(1, 3.3);
+    assert.equal(result, 4);
   });
 
   it('rounds both numbers', () => {
