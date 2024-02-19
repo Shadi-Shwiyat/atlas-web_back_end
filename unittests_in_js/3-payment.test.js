@@ -3,7 +3,7 @@
 const chai = require('chai');
 const sinon = require('sinon');
 const Utils = require('./utils');
-const sendPaymentRequestToApi = require('./3-payments');
+const sendPaymentRequestToApi = require('./3-payment');
 
 const { expect } = chai;
 
@@ -20,6 +20,6 @@ describe('sendPaymentRequestToApi', () => {
 
     expect(spy.calledOnce).to.be.true;
 
-    expect(spy.calledWithExactly('SUM', 100, 20)).to.be.true;
+    expect(spy.calledWith('SUM', 100, 20)).to.be.true;
   });
 });

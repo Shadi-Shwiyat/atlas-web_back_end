@@ -1,7 +1,7 @@
 // Module that has a calculator
 
 const Utils = {
-  calculateNumber: function calculateNumber(type, a, b) {
+  calculateNumber(type, a, b) {
     if (type === 'SUM') {
       return Math.round(a) + Math.round(b);
     }
