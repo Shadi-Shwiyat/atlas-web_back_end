@@ -1,0 +1,16 @@
+● redis-server.service - Advanced key-value store
+     Loaded: loaded (/lib/systemd/system/redis-server.service; disabled; vendor preset: enabled)
+     Active: inactive (dead)
+       Docs: http://redis.io/documentation,
+             man:redis-server(1)
+
+Feb 28 15:01:10 Raz-Laptop systemd[1]: Started Advanced key-value store.
+Feb 28 15:01:59 Raz-Laptop systemd[1]: redis-server.service: Succeeded.
+Feb 28 15:02:00 Raz-Laptop systemd[1]: redis-server.service: Scheduled restart job, restart counter is at 4.
+Feb 28 15:02:00 Raz-Laptop systemd[1]: Stopped Advanced key-value store.
+Feb 28 15:02:00 Raz-Laptop systemd[1]: Starting Advanced key-value store...
+Feb 28 15:02:00 Raz-Laptop systemd[1]: redis-server.service: Can't open PID file /run/redis/redis-server.pid (yet?) after start: Operation not permitted
+Feb 28 15:02:00 Raz-Laptop systemd[1]: Started Advanced key-value store.
+Feb 28 15:14:04 Raz-Laptop systemd[1]: Stopping Advanced key-value store...
+Feb 28 15:14:04 Raz-Laptop systemd[1]: redis-server.service: Succeeded.
+Feb 28 15:14:04 Raz-Laptop systemd[1]: Stopped Advanced key-value store.
