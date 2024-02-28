@@ -1,4 +1,4 @@
-// Same a 6-job_creator but creates a job for each object in jobs array
+// Same as 6-job_creator but creates a job for each object in jobs array
 const kue = require('kue');
 
 const queue = kue.createQueue();
